@@ -1,0 +1,966 @@
+
+/* =====================================================
+   SHIELD 2.0 — CYBER INTELLIGENCE DESIGN SYSTEM
+   Member 2: Mayesha
+   Theme: Midnight / Electric Cyan / Threat Radar
+   ===================================================== */
+
+:root {
+  --shield-bg: #060b14;
+  --shield-surface: #0b1422;
+  --shield-surface-raised: #101e30;
+  --shield-border: #22364c;
+
+  --shield-text: #f0f7ff;
+  --shield-muted: #91a6bd;
+
+  --shield-accent: #42f5d4;
+  --shield-accent-hover: #8affea;
+  --shield-accent-ink: #041713;
+
+  --shield-cyan: #57c7ff;
+  --shield-danger: #ff6b79;
+  --shield-warning: #ffd166;
+
+  --shield-grid-line: rgba(87, 199, 255, 0.045);
+  --shield-glow: rgba(66, 245, 212, 0.13);
+
+  --shield-radius: 14px;
+  --shield-transition: 180ms ease;
+}
+
+/* =====================================================
+   SHARED FOUNDATIONS
+   ===================================================== */
+
+.home,
+.shield-quiz-page {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: 0 clamp(20px, 7vw, 104px);
+  overflow: hidden;
+
+  background-color: var(--shield-bg);
+  background-image:
+    linear-gradient(
+      var(--shield-grid-line) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      var(--shield-grid-line) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      ellipse at 50% 25%,
+      rgba(24, 103, 128, 0.16),
+      transparent 54%
+    );
+
+  background-size:
+    40px 40px,
+    40px 40px,
+    auto;
+
+  color: var(--shield-text);
+
+  font-family:
+    Inter,
+    "SF Pro Display",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+.home *,
+.shield-quiz-page * {
+  box-sizing: border-box;
+}
+
+.home button,
+.shield-quiz-page button {
+  font: inherit;
+}
+
+.home button:focus-visible,
+.home a:focus-visible,
+.shield-quiz-page button:focus-visible,
+.shield-quiz-page a:focus-visible {
+  outline: 2px solid var(--shield-accent);
+  outline-offset: 4px;
+}
+
+.home button:disabled,
+.shield-quiz-page button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+::selection {
+  color: var(--shield-accent-ink);
+  background: var(--shield-accent);
+}
+
+/* =====================================================
+   NAVIGATION — TECHNICAL BRAND IDENTITY
+   ===================================================== */
+
+.navbar,
+.shield-quiz-header {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  min-height: 84px;
+  border-bottom: 1px solid rgba(87, 199, 255, 0.17);
+}
+
+.brand,
+.shield-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  color: var(--shield-text);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.brand-icon,
+.shield-brand-icon {
+  position: relative;
+
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  place-items: center;
+
+  border: 1px solid var(--shield-accent);
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(66, 245, 212, 0.18),
+      rgba(87, 199, 255, 0.05)
+    );
+
+  box-shadow:
+    inset 0 0 16px rgba(66, 245, 212, 0.07),
+    0 0 22px rgba(66, 245, 212, 0.08);
+
+  color: var(--shield-accent);
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.brand-icon::after,
+.shield-brand-icon::after {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--shield-bg);
+  border-radius: 50%;
+
+  background: var(--shield-accent);
+  content: "";
+}
+
+.nav-label,
+.shield-quiz-label {
+  color: var(--shield-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-align: right;
+}
+
+/* =====================================================
+   HOME — CYBER INTELLIGENCE LANDING PAGE
+   Matches Home.jsx class names
+   ===================================================== */
+
+.hero {
+  position: relative;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: clamp(76px, 10vw, 120px) 0 65px;
+  text-align: center;
+}
+
+.hero::before {
+  position: absolute;
+  z-index: -1;
+  top: 60px;
+  left: 50%;
+
+  width: min(650px, 100%);
+  height: 360px;
+
+  transform: translateX(-50%);
+  border-radius: 50%;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(66, 245, 212, 0.055),
+    transparent 70%
+  );
+
+  content: "";
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 10px 15px;
+
+  border: 1px solid rgba(66, 245, 212, 0.3);
+  border-radius: 5px;
+
+  background: rgba(66, 245, 212, 0.045);
+
+  color: var(--shield-accent);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.status-dot {
+  position: relative;
+
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  background: var(--shield-accent);
+  box-shadow: 0 0 12px rgba(66, 245, 212, 0.8);
+}
+
+.status-dot::after {
+  position: absolute;
+  inset: -4px;
+
+  border: 1px solid rgba(66, 245, 212, 0.35);
+  border-radius: 50%;
+
+  content: "";
+  animation: shield-pulse 2.4s ease-out infinite;
+}
+
+.hero h1 {
+  margin: 32px 0 23px;
+
+  color: var(--shield-text);
+  font-size: clamp(45px, 7.5vw, 82px);
+  font-weight: 800;
+  letter-spacing: -4px;
+  line-height: 1.06;
+}
+
+.accent {
+  color: var(--shield-accent);
+  text-shadow: 0 0 34px rgba(66, 245, 212, 0.17);
+}
+
+.hero-description {
+  max-width: 590px;
+  margin: 0 auto;
+
+  color: var(--shield-muted);
+  font-size: 15px;
+  line-height: 1.95;
+}
+
+.start-button {
+  position: relative;
+  min-height: 54px;
+  margin-top: 32px;
+  padding: 0 27px;
+
+  border: 1px solid var(--shield-accent);
+  border-radius: 6px;
+
+  background: var(--shield-accent);
+  color: var(--shield-accent-ink);
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+
+  box-shadow: 0 0 25px rgba(66, 245, 212, 0.12);
+
+  cursor: pointer;
+
+  transition:
+    transform var(--shield-transition),
+    box-shadow var(--shield-transition),
+    background var(--shield-transition);
+}
+
+.start-button:hover {
+  transform: translateY(-2px);
+  background: var(--shield-accent-hover);
+  box-shadow: 0 0 32px rgba(66, 245, 212, 0.25);
+}
+
+.start-button:active {
+  transform: translateY(0);
+}
+
+.start-button span {
+  display: inline-block;
+  margin-left: 9px;
+  transition: transform var(--shield-transition);
+}
+
+.start-button:hover span {
+  transform: translate(3px, -2px);
+}
+
+/* Stats become three technical readouts */
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 650px;
+  margin: 66px auto 0;
+  border-top: 1px solid var(--shield-border);
+  border-bottom: 1px solid var(--shield-border);
+}
+
+.hero-stats > div {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+
+  padding: 24px 12px;
+}
+
+.hero-stats > div + div {
+  border-left: 1px solid var(--shield-border);
+}
+
+.hero-stats strong {
+  color: var(--shield-accent);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.hero-stats span {
+  color: var(--shield-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* Footer */
+
+.home-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 24px 0;
+
+  border-top: 1px solid rgba(87, 199, 255, 0.15);
+
+  color: var(--shield-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+}
+
+/* =====================================================
+   TRAINING SCREEN — PROGRESS HUD
+   ===================================================== */
+
+.shield-quiz-page {
+  padding-bottom: 35px;
+}
+
+.shield-quiz-content {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 38px 0 45px;
+}
+
+.shield-progress-section {
+  margin-bottom: 24px;
+}
+
+.shield-progress-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+  color: var(--shield-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.shield-progress-count {
+  color: var(--shield-accent);
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.shield-progress-count span {
+  color: var(--shield-muted);
+}
+
+.shield-progress-track {
+  position: relative;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #1a2a3c;
+}
+
+.shield-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--shield-cyan),
+    var(--shield-accent)
+  );
+
+  box-shadow: 0 0 15px rgba(66, 245, 212, 0.4);
+
+  transition: width 250ms ease;
+}
+
+/* =====================================================
+   SCENARIO CARD — INTELLIGENCE BRIEFING
+   ===================================================== */
+
+.shield-scenario-card {
+  position: relative;
+  padding: clamp(20px, 4vw, 38px);
+
+  border: 1px solid var(--shield-border);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(87, 199, 255, 0.035),
+      transparent 40%
+    ),
+    rgba(11, 20, 34, 0.96);
+
+  box-shadow: 0 22px 65px rgba(0, 0, 0, 0.16);
+}
+
+.shield-scenario-card::before {
+  position: absolute;
+  top: -1px;
+  left: 24px;
+
+  width: 76px;
+  height: 2px;
+
+  background: var(--shield-accent);
+  box-shadow: 0 0 16px rgba(66, 245, 212, 0.35);
+
+  content: "";
+}
+
+.shield-scenario-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.shield-category,
+.shield-difficulty {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 28px;
+  padding: 5px 10px;
+
+  border: 1px solid var(--shield-border);
+  border-radius: 4px;
+
+  color: var(--shield-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.shield-category {
+  border-color: rgba(66, 245, 212, 0.24);
+  background: rgba(66, 245, 212, 0.06);
+  color: var(--shield-accent);
+}
+
+.shield-difficulty-easy {
+  border-color: rgba(66, 245, 212, 0.22);
+  color: var(--shield-accent);
+}
+
+.shield-difficulty-medium {
+  border-color: rgba(255, 209, 102, 0.25);
+  color: var(--shield-warning);
+}
+
+.shield-difficulty-hard {
+  border-color: rgba(255, 107, 121, 0.28);
+  color: var(--shield-danger);
+}
+
+.shield-scenario-heading {
+  padding: 26px 0;
+}
+
+.shield-scenario-number,
+.shield-question-label {
+  color: var(--shield-cyan);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.shield-scenario-heading h1 {
+  margin: 12px 0 0;
+  color: var(--shield-text);
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+/* =====================================================
+   SITUATION PANEL
+   ===================================================== */
+
+.shield-message-panel {
+  padding: 23px;
+
+  border: 1px solid #273d54;
+  border-radius: 8px;
+
+  background: rgba(6, 13, 23, 0.76);
+}
+
+.shield-panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.shield-panel-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  place-items: center;
+
+  border: 1px solid rgba(87, 199, 255, 0.18);
+  border-radius: 7px;
+
+  background: rgba(87, 199, 255, 0.07);
+  color: var(--shield-cyan);
+  font-size: 17px;
+}
+
+.shield-panel-heading h2 {
+  margin: 0;
+  color: var(--shield-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.shield-scenario-message {
+  margin: 18px 0 0;
+  color: var(--shield-text);
+  font-size: 14px;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+}
+
+/* =====================================================
+   EVIDENCE CARDS
+   ===================================================== */
+
+.shield-evidence-section {
+  margin-top: 30px;
+}
+
+.shield-evidence-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.shield-evidence-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  padding: 15px;
+
+  border: 1px solid #23364b;
+  border-radius: 7px;
+
+  background: rgba(16, 30, 48, 0.62);
+
+  transition:
+    border-color var(--shield-transition),
+    background var(--shield-transition);
+}
+
+.shield-evidence-item:hover {
+  border-color: rgba(87, 199, 255, 0.45);
+  background: rgba(16, 30, 48, 0.9);
+}
+
+.shield-evidence-marker {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  flex-shrink: 0;
+  place-items: center;
+
+  border: 1px solid rgba(87, 199, 255, 0.2);
+  border-radius: 5px;
+
+  background: rgba(87, 199, 255, 0.07);
+  color: var(--shield-cyan);
+
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.shield-evidence-item p {
+  margin: 3px 0 0;
+  color: #d2dfed;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+/* =====================================================
+   DECISION AREA — ANSWER OPTIONS
+   ===================================================== */
+
+.shield-question-section {
+  margin-top: 34px;
+}
+
+.shield-question {
+  margin: 13px 0 22px;
+  color: var(--shield-text);
+  font-size: clamp(19px, 3vw, 25px);
+  font-weight: 700;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.shield-options {
+  display: grid;
+  gap: 11px;
+}
+
+.shield-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 67px;
+  gap: 15px;
+  padding: 13px 16px;
+
+  border: 1px solid #293c52;
+  border-radius: 8px;
+
+  background: rgba(13, 25, 41, 0.9);
+  color: var(--shield-text);
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    border-color var(--shield-transition),
+    background var(--shield-transition),
+    transform var(--shield-transition);
+}
+
+.shield-option:hover {
+  transform: translateX(3px);
+  border-color: var(--shield-accent);
+  background: rgba(23, 48, 63, 0.92);
+}
+
+.shield-option-letter {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  place-items: center;
+
+  border: 1px solid #354b61;
+  border-radius: 6px;
+
+  color: var(--shield-cyan);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  font-weight: 700;
+
+  transition:
+    border-color var(--shield-transition),
+    background var(--shield-transition),
+    color var(--shield-transition);
+}
+
+.shield-option:hover .shield-option-letter {
+  border-color: var(--shield-accent);
+  background: rgba(66, 245, 212, 0.09);
+  color: var(--shield-accent);
+}
+
+.shield-option-text {
+  flex: 1;
+  min-width: 0;
+  color: var(--shield-text);
+  font-size: 13px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.shield-option-arrow {
+  flex-shrink: 0;
+  color: var(--shield-muted);
+  font-size: 19px;
+
+  transition:
+    color var(--shield-transition),
+    transform var(--shield-transition);
+}
+
+.shield-option:hover .shield-option-arrow {
+  transform: translateX(4px);
+  color: var(--shield-accent);
+}
+
+.shield-selection-hint {
+  margin: 18px 0 0;
+  color: var(--shield-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.shield-quiz-footer-note {
+  margin: 23px 0 0;
+  color: var(--shield-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  text-align: center;
+}
+
+.shield-quiz-empty {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 28px;
+
+  border: 1px solid var(--shield-border);
+  border-radius: 10px;
+
+  background: var(--shield-surface);
+  color: var(--shield-muted);
+  text-align: center;
+}
+
+/* =====================================================
+   ANIMATION
+   ===================================================== */
+
+@keyframes shield-pulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* =====================================================
+   RESPONSIVE LAYOUT
+   ===================================================== */
+
+@media (max-width: 700px) {
+  .home,
+  .shield-quiz-page {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .navbar,
+  .shield-quiz-header {
+    min-height: 72px;
+  }
+
+  .nav-label,
+  .shield-quiz-label {
+    max-width: 145px;
+    font-size: 9px;
+    letter-spacing: 0.8px;
+  }
+
+  .hero {
+    padding: 74px 0 48px;
+  }
+
+  .hero h1 {
+    font-size: clamp(43px, 10vw, 65px);
+    letter-spacing: -2.5px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .hero-stats {
+    margin-top: 48px;
+  }
+
+  .hero-stats > div {
+    padding: 20px 7px;
+  }
+
+  .hero-stats strong {
+    font-size: 21px;
+  }
+
+  .hero-stats span {
+    font-size: 9px;
+  }
+
+  .home-footer {
+    font-size: 8px;
+    letter-spacing: 0.6px;
+  }
+
+  .shield-quiz-content {
+    padding-top: 25px;
+  }
+
+  .shield-scenario-card {
+    padding: 21px;
+  }
+
+  .shield-message-panel {
+    padding: 18px;
+  }
+
+  .shield-option {
+    gap: 11px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 390px) {
+  .home,
+  .shield-quiz-page {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .brand,
+  .shield-brand {
+    gap: 8px;
+    font-size: 15px;
+  }
+
+  .brand-icon,
+  .shield-brand-icon {
+    width: 33px;
+    height: 33px;
+  }
+
+  .nav-label,
+  .shield-quiz-label {
+    max-width: 115px;
+    font-size: 8px;
+    letter-spacing: 0.4px;
+  }
+
+  .hero-badge {
+    gap: 7px;
+    padding: 9px 10px;
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    letter-spacing: -2px;
+  }
+
+  .hero-stats span {
+    font-size: 8px;
+  }
+
+  .shield-scenario-card {
+    padding: 15px;
+  }
+
+  .shield-progress-labels {
+    font-size: 9px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .home *,
+  .shield-quiz-page * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
