@@ -4,11 +4,20 @@ import Home from "./components/Home";
 import ScenarioCard from "./components/ScenarioCard";
 import ResultsDashboard from "./components/ResultsDashboard";
 import ThreatAnalyzer from "./components/ThreatAnalyzer";
+import LearningLibrary from "./components/LearningLibrary";
+import MyProgress from "./components/MyProgress";
 import { scenarios } from "./data/scenarios";
 import { calculateScore } from "./logic/scoring";
 import "./App.css";
 
-const VALID_SCREENS = ["home", "quiz", "analyzer", "results"];
+const VALID_SCREENS = [
+  "home",
+  "quiz",
+  "analyzer",
+  "results",
+  "library",
+  "progress",
+];
 
 export default function App() {
   const [screen, setScreen] = useState("home");
@@ -16,11 +25,8 @@ export default function App() {
   const [answers, setAnswers] = useState({});
   const [error, setError] = useState("");
 
-  // Keep the browser's history synchronized with SHIELD screens.
   useEffect(() => {
-    const currentState = window.history.state;
-
-    if (!currentState?.shield) {
+    if (!window.history.state?.shield) {
       window.history.replaceState(
         { shield: true, screen: "home" },
         "",
@@ -28,7 +34,7 @@ export default function App() {
       );
     }
 
-    const handlePopState = (event) => {
+    function handlePopState(event) {
       const previousScreen = event.state?.screen;
 
       if (
@@ -36,18 +42,12 @@ export default function App() {
         VALID_SCREENS.includes(previousScreen)
       ) {
         setScreen(previousScreen);
-        setError("");
       } else {
-        // Stay inside SHIELD if the browser reaches its entry point.
-        window.history.pushState(
-          { shield: true, screen: "home" },
-          "",
-          window.location.href
-        );
         setScreen("home");
-        setError("");
       }
-    };
+
+      setError("");
+    }
 
     window.addEventListener("popstate", handlePopState);
 
@@ -80,16 +80,14 @@ export default function App() {
     navigateTo("quiz");
   }
 
-  function openAnalyzer() {
-    navigateTo("analyzer");
-  }
-
   function handleAnswer(optionId) {
-    if (!scenarios[currentIndex] || !optionId) return;
+    const scenario = scenarios[currentIndex];
+
+    if (!scenario || !optionId) return;
 
     const updatedAnswers = {
       ...answers,
-      [scenarios[currentIndex].id]: optionId,
+      [scenario.id]: optionId,
     };
 
     setAnswers(updatedAnswers);
@@ -123,7 +121,7 @@ export default function App() {
       {screen === "home" && (
         <Home
           onStart={startTraining}
-          onOpenAnalyzer={openAnalyzer}
+          onOpenAnalyzer={() => navigateTo("analyzer")}
         />
       )}
 
@@ -139,6 +137,9 @@ export default function App() {
           questionNumber={currentIndex + 1}
           totalQuestions={scenarios.length}
           onAnswer={handleAnswer}
+          onNavigate={navigateTo}
+          onOpenLibrary={() => navigateTo("library")}
+          onOpenProgress={() => navigateTo("progress")}
         />
       )}
 
@@ -150,6 +151,20 @@ export default function App() {
           answers={answers}
           scenarios={scenarios}
           onRestart={restartTraining}
+        />
+      )}
+
+      {screen === "library" && (
+        <LearningLibrary
+          onBack={() => navigateTo("home")}
+        />
+      )}
+
+      {screen === "progress" && (
+        <MyProgress
+          answers={answers}
+          scenarios={scenarios}
+          onBack={() => navigateTo("home")}
         />
       )}
     </div>
