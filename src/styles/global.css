@@ -1,0 +1,546 @@
+
+/* =========================================
+   SHIELD — Global Styles
+   Scam Awareness & Cyber Safety Platform
+   ========================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+/* ---------- Design Tokens ---------- */
+
+:root {
+  font-family: "DM Sans", sans-serif;
+  color: #eaf0ff;
+  background: #080d19;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --bg-primary: #080d19;
+  --bg-secondary: #0d1424;
+  --bg-card: #111b2e;
+  --bg-card-hover: #17243a;
+
+  --text-primary: #eaf0ff;
+  --text-secondary: #9baac4;
+  --text-muted: #71819c;
+
+  --accent: #42e8d4;
+  --accent-hover: #74f2e4;
+  --accent-soft: rgba(66, 232, 212, 0.12);
+
+  --border: rgba(158, 179, 214, 0.16);
+  --border-active: rgba(66, 232, 212, 0.65);
+
+  --success: #5ce0a0;
+  --warning: #ffc66d;
+  --danger: #ff7185;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --shadow-card: 0 16px 42px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- Reset ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(
+      ellipse at 15% 0%,
+      rgba(37, 88, 123, 0.17),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 100% 70%,
+      rgba(28, 105, 111, 0.1),
+      transparent 35%
+    ),
+    var(--bg-primary);
+  color: var(--text-primary);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+::selection {
+  color: #07131a;
+  background: var(--accent);
+}
+
+/* ---------- Typography ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.7rem);
+  letter-spacing: -0.045em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+small {
+  color: var(--text-muted);
+}
+
+/* ---------- App Layout ---------- */
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.container,
+.page-container {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.app-error {
+  width: min(900px, calc(100% - 32px));
+  margin: 20px auto;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 113, 133, 0.35);
+  border-radius: var(--radius-md);
+  background: rgba(255, 113, 133, 0.09);
+  color: var(--danger);
+}
+
+/* ---------- Shared Cards ---------- */
+
+.card,
+.panel,
+.scenario-card,
+.result-card,
+.feature-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.card,
+.panel {
+  padding: 24px;
+}
+
+.feature-card {
+  padding: 26px;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-active);
+  background: var(--bg-card-hover);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn,
+.primary-button,
+.secondary-button,
+button.primary,
+button.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  text-align: center;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.btn-primary,
+.primary-button,
+button.primary {
+  color: #06171a;
+  background: var(--accent);
+}
+
+.btn-primary:hover,
+.primary-button:hover,
+button.primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary,
+.secondary-button,
+button.secondary {
+  border-color: var(--border);
+  color: var(--text-primary);
+  background: #172238;
+}
+
+.btn-secondary:hover,
+.secondary-button:hover,
+button.secondary:hover {
+  border-color: var(--border-active);
+  background: var(--bg-card-hover);
+}
+
+/* ---------- Form Controls ---------- */
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  transition: border-color 160ms ease;
+}
+
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+}
+
+/* ---------- Scenario / Quiz ---------- */
+
+.scenario-card {
+  width: min(850px, calc(100% - 32px));
+  margin: 48px auto;
+  padding: clamp(22px, 5vw, 40px);
+}
+
+.scenario-message {
+  margin: 24px 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(5, 10, 20, 0.55);
+  color: var(--text-primary);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.scenario-options {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.scenario-option,
+.option-button {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  text-align: left;
+  line-height: 1.6;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.scenario-option:hover,
+.option-button:hover {
+  border-color: var(--border-active);
+  background: var(--bg-card-hover);
+}
+
+.scenario-option.selected,
+.option-button.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.scenario-progress {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #202b40;
+}
+
+.scenario-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 250ms ease;
+}
+
+/* ---------- Evidence & Warning Labels ---------- */
+
+.evidence-list,
+.red-flag-list {
+  display: grid;
+  gap: 10px;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.badge,
+.category-badge,
+.difficulty-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.warning-text {
+  color: var(--warning);
+}
+
+.danger-text {
+  color: var(--danger);
+}
+
+.success-text {
+  color: var(--success);
+}
+
+/* ---------- Results Dashboard ---------- */
+
+.results-dashboard {
+  width: min(1050px, calc(100% - 32px));
+  margin: 40px auto;
+}
+
+.results-grid,
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.result-card {
+  padding: 24px;
+}
+
+.score-number {
+  color: var(--accent);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.recommendation {
+  margin-top: 16px;
+  padding: 16px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--accent-soft);
+}
+
+/* ---------- Utility Classes ---------- */
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.mt-1 {
+  margin-top: 8px;
+}
+
+.mt-2 {
+  margin-top: 16px;
+}
+
+.mt-3 {
+  margin-top: 24px;
+}
+
+.mb-2 {
+  margin-bottom: 16px;
+}
+
+.gap-2 {
+  gap: 16px;
+}
+
+/* ---------- Keyboard Accessibility ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Responsive Design ---------- */
+
+@media (max-width: 700px) {
+  .container,
+  .page-container {
+    width: calc(100% - 28px);
+  }
+
+  .scenario-card {
+    margin: 24px auto;
+    padding: 22px 18px;
+  }
+
+  .results-grid,
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card,
+  .panel,
+  .feature-card,
+  .result-card {
+    padding: 18px;
+  }
+
+  .flex-between {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .btn,
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+  }
+}
