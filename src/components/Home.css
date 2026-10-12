@@ -1,9 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-/* =========================================
-   SHIELD — PREMIUM CYBERSECURITY HOMEPAGE
-   ========================================= */
+/* SHIELD — FULL-WIDTH CYBERSECURITY HOMEPAGE */
 
 .home-page {
   --home-bg: #080d17;
@@ -13,7 +11,11 @@
   --home-muted: #92a1b6;
   --home-accent: #5ce9c7;
 
+  display: block;
+  width: 100%;
+  max-width: none;
   min-height: 100vh;
+  margin: 0;
   overflow: hidden;
   color: var(--home-text);
   background:
@@ -132,8 +134,8 @@
 
 .home-main {
   width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   padding: 0 7%;
 }
 
@@ -142,7 +144,7 @@
 .home-hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   align-items: center;
   gap: clamp(35px, 6vw, 100px);
   min-height: 610px;
@@ -153,6 +155,7 @@
   position: relative;
   z-index: 2;
   max-width: 650px;
+  min-width: 0;
 }
 
 .hero-eyebrow {
@@ -212,10 +215,7 @@
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    border-color 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
 .shield-button {
@@ -270,6 +270,8 @@
   isolation: isolate;
   display: grid;
   place-items: center;
+  width: 100%;
+  min-width: 0;
   min-height: 405px;
   border: 1px solid #243b4d;
   border-radius: 20px;
@@ -350,11 +352,11 @@
 
 .card-top {
   top: 14%;
-  left: -4%;
+  left: 0;
 }
 
 .card-bottom {
-  right: -3%;
+  right: 0;
   bottom: 17%;
 }
 
@@ -465,10 +467,7 @@
   border: 1px solid var(--home-border);
   border-radius: 13px;
   background: linear-gradient(145deg, #121d2c, #0d1522);
-  transition:
-    transform 0.22s ease,
-    border-color 0.22s ease,
-    background 0.22s ease;
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
 }
 
 .feature-card:hover {
@@ -582,7 +581,7 @@
   }
 }
 
-/* RESPONSIVE TABLET */
+/* TABLET */
 
 @media (max-width: 1000px) {
   .home-navbar {
@@ -594,7 +593,7 @@
   }
 
   .home-hero {
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.85fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
     gap: 30px;
     min-height: 550px;
     padding: 55px 0;
@@ -614,11 +613,11 @@
   }
 
   .card-top {
-    left: 1%;
+    left: 0;
   }
 
   .card-bottom {
-    right: 1%;
+    right: 0;
   }
 
   .feature-card {
@@ -626,7 +625,7 @@
   }
 }
 
-/* RESPONSIVE MOBILE */
+/* MOBILE */
 
 @media (max-width: 700px) {
   .home-navbar {
@@ -732,11 +731,11 @@
 
   .card-top {
     top: 7%;
-    left: 3%;
+    left: 2%;
   }
 
   .card-bottom {
-    right: 3%;
+    right: 2%;
     bottom: 12%;
   }
 
